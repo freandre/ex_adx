@@ -13,16 +13,15 @@ defmodule Dsp.Dispatch do
 
   def request(request) do
     GenServer.call(:dispatch, {:request, request})
-    |> Enum.filter(&(Dsp.Validator.validate(request, &1)))
-    |> Adx.Election.choose
+    |> Enum.filter(&Dsp.Validator.validate(request, &1))
+    |> Adx.Election.choose()
   end
 
   # Server (callbacks)
   def handle_call({:request, request}, _from, lst_dsp) do
-    ret = lst_dsp
-    |> Enum.map(fn(dsp) ->
-        Dsp.Connector.request(dsp, request)
-       end)
+    ret =
+      lst_dsp
+      |> Enum.map(&Dsp.Connector.request(&1, request))
 
     {:reply, ret, lst_dsp}
   end
@@ -30,5 +29,4 @@ defmodule Dsp.Dispatch do
   def handle_info(_, lst_dsp) do
     {:noreply, lst_dsp}
   end
-
 end

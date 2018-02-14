@@ -1,19 +1,23 @@
 defmodule Dsp.Router do
   use Plug.Router
 
-  plug :match
-  plug Plug.Parsers, parsers: [:json],
-                     pass:  ["application/json"],
-                     json_decoder: Poison
-  plug :dispatch
+  plug(:match)
+
+  plug(
+    Plug.Parsers,
+    parsers: [:json],
+    pass: ["application/json"],
+    json_decoder: Poison
+  )
+
+  plug(:dispatch)
 
   get "/ping" do
     send_resp(conn, 200, "pong")
   end
 
   post "/dsp" do
-  	send_resp(conn, 200,
- "{
+    send_resp(conn, 200, "{
    \"id\": \"1234567890\",
    \"seatbid\": [
      {
@@ -42,8 +46,7 @@ defmodule Dsp.Router do
        \"seat\": \"4\"
      }
    ]
- }"
-  		)
+ }")
   end
 
   match _ do

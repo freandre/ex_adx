@@ -15,7 +15,7 @@ defmodule Adx.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Adx.Application, [:cowboy, :plug, :ex_rated]}
+      mod: {Adx.Application, [:cowboy, :plug, :ex_rated, :httpoison]}
     ]
   end
 
@@ -25,7 +25,8 @@ defmodule Adx.MixProject do
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
       {:poison, "~> 3.1"},
-      {:ex_rated, "~> 1.2"}
+      {:ex_rated, "~> 1.2"},
+      {:httpoison, "~> 1.0"}
     ]
   end
 end

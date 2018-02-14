@@ -1,3 +1,3 @@
 defmodule Dsp.Config do
-	defstruct [:name, :address, :port, :qps]
+  defstruct [:name, :endpoint, :qps]
 end
