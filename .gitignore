@@ -1,8 +1,9 @@
 
-_build
-deps
-ebin
+/_build
+/cover
+/deps
+/doc
+/.fetch
 erl_crash.dump
-mix.lock
 *.ez
 *.beam
