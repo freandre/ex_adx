@@ -28,3 +28,7 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :adx,
+	adx_port: 4242,
+	dsp_list: [%{name: "fredsp", address: "127.0.0.1", port: 1515, qps: 20}, %{name: "fredsp2", address: "127.0.0.1", port: 1616, qps: 10}]

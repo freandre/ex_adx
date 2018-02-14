@@ -8,8 +8,7 @@ defmodule Dsp.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: Dsp.Worker.start_link(arg)
-      # {Dsp.Worker, arg},
+      Plug.Adapters.Cowboy.child_spec(scheme: :http, plug: Dsp.Router, options: [port: Application.get_env(:dsp, :dsp_port)])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

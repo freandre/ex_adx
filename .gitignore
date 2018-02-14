@@ -1,0 +1,8 @@
+
+_build
+deps
+ebin
+erl_crash.dump
+mix.lock
+*.ez
+*.beam
