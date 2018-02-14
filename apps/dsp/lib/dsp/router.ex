@@ -2,19 +2,19 @@ defmodule Dsp.Router do
   use Plug.Router
 
   plug :match
+  plug Plug.Parsers, parsers: [:json],
+                     pass:  ["application/json"],
+                     json_decoder: Poison
   plug :dispatch
 
-  get "/hello" do
-    send_resp(conn, 200, "world")
+  get "/ping" do
+    send_resp(conn, 200, "pong")
   end
 
   post "/dsp" do
   	send_resp(conn, 200,
  "{
    \"id\": \"1234567890\",
-   \"ext\": {
-     \"protocol\": \"5.3\"
-   },
    \"seatbid\": [
      {
        \"bid\": [

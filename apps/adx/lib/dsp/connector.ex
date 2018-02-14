@@ -1,4 +1,7 @@
 defmodule Dsp.Connector do
+
+  @timeout 100
+
   use GenServer
 
   # Client
@@ -13,7 +16,7 @@ defmodule Dsp.Connector do
 
   def request(name, request) do
   	try do
-    	GenServer.call(name, {:request, request}, 100)
+    	GenServer.call(name, {:request, request}, @timeout)
     catch
     	:exit, _value ->
     		:nothing
@@ -22,10 +25,10 @@ defmodule Dsp.Connector do
 
   # Server (callbacks)
   def handle_call({:request, _request}, _from, cfg) do
-  	#:timer.sleep(110)
+  	#:timer.sleep(@timeout + 10)
   	case ExRated.check_rate(cfg.name, 1000, cfg.qps) do
   		{:ok, _} -> {:reply, :ok, cfg}
-  		_ -> {:reply, :ko, cfg}
+  		_ -> {:reply, :nothing, cfg}
   	end
   end
 
