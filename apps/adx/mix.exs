@@ -26,7 +26,8 @@ defmodule Adx.MixProject do
       {:plug, "~> 1.0"},
       {:poison, "~> 3.1"},
       {:ex_rated, "~> 1.2"},
-      {:httpoison, "~> 1.0"}
+      {:httpoison, "~> 1.0"},
+      {:dsp, in_umbrella: true}
     ]
   end
 end

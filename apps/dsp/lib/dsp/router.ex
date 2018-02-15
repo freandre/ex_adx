@@ -17,36 +17,36 @@ defmodule Dsp.Router do
   end
 
   post "/dsp" do
-    send_resp(conn, 200, "{
-   \"id\": \"1234567890\",
-   \"seatbid\": [
-     {
-       \"bid\": [
-         {
-           \"id\": \"1\",
-           \"impid\": \"102\",
-           \"price\": 9.43,
-           \"adid\": \"314\",
-           \"cid\": \"42\",
-           \"cat\": [\"IAB12\"],
-           \"language\": \"en\",
-           \"burl\":\"https://adserver.com/imp?impid=102&winprice=${AUCTION_PRICE}\",
-           \"adm\": \"<a href=\"http://adserver.com/click?adid=12345&tracker=${CLICK_URL:URLENCODE}\"><img src=\"http://image1.cdn.com/impid=102\"/></a>\",
-           \"nurl\": \"http://adserver.com/winnotice?impid=102&winprice=${AUCTION_PRICE}\",
-           \"iurl\": \"http://adserver.com/preview?crid=314\",
-           \"adomain\": [
-             \"advertiserdomain.com\"
-           ],
-           \"ext\": {
-             \"advertiser_name\": \"Coca-Cola\",
-             \"agency_name\": \"CC-advertising\"
-           }
-         }
-       ],
-       \"seat\": \"4\"
-     }
-   ]
- }")
+   data = ~s(
+{
+    "id": "IxexyLDIIk",
+    "seatbid": [
+        {
+            "bid": [
+                {
+                    "id": "1",
+                    "impid": "1",
+                    "price": 0.751371,
+                    "adid": "52a5516d29e435137c6f6e74",
+                    "nurl": "http://ads.com/win/112770_1386565997?won=${AUCTION_PRICE}",
+                    "adm": "<a href=\\"http://ads.com/click/112770_1386565997\\"><img src=\\"http://ads.com/img/112770_1386565997?won=${AUCTION_PRICE}\\" width=\\"728\\" height=\\"90\\" border=\\"0\\" alt=\\"Advertisement\\" /></a>",
+                    "adomain": [
+                        "ads.com"
+                    ],
+                    "iurl": "http://ads.com/112770_1386565997.jpeg",
+                    "cid": "52a5516d29e435137c6f6e74",
+                    "crid": "52a5516d29e435137c6f6e74_1386565997",
+                    "attr": []
+                }
+            ],
+            "seat": "2"
+        }
+    ],
+    "cur": "USD"
+})
+
+    encoded = Poison.decode!(data)
+    send_resp(conn, 200, Poison.encode!(encoded))
   end
 
   match _ do

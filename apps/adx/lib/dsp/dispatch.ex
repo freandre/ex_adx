@@ -14,14 +14,16 @@ defmodule Dsp.Dispatch do
   def request(request) do
     GenServer.call(:dispatch, {:request, request})
     |> Enum.filter(&Dsp.Validator.validate(request, &1))
-    |> Adx.Election.choose()
+    |> Dsp.Election.select_response()
   end
 
   # Server (callbacks)
   def handle_call({:request, request}, _from, lst_dsp) do
     ret =
       lst_dsp
-      |> Enum.map(&Dsp.Connector.request(&1, request))
+      |> Dsp.Election.select_dsp
+      |> Enum.map(&Task.async(fn -> Dsp.Connector.request(&1, request) end))
+      |> Enum.map(&Task.await/1)
 
     {:reply, ret, lst_dsp}
   end
