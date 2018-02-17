@@ -18,7 +18,7 @@ defmodule Adx.Router do
 
   post "/adx" do
     ret = Dsp.Dispatch.request(conn.body_params)
-    send_resp(conn, 200, inspect(ret))
+    send_resp(conn, 200, Poison.encode!(ret))
   end
 
   match _ do

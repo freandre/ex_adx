@@ -12,6 +12,11 @@ defmodule Dsp.Application do
         scheme: :http,
         plug: Dsp.Router,
         options: [port: Application.get_env(:dsp, :dsp_port)]
+      ),
+      Plug.Adapters.Cowboy.child_spec(
+        scheme: :http,
+        plug: Dsp.RouterSec,
+        options: [port: Application.get_env(:dsp, :dsp_port_sec)]
       )
     ]
 

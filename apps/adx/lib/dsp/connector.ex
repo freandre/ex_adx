@@ -4,7 +4,6 @@ defmodule Dsp.Connector do
   use GenServer
 
   # Client
-
   def start_link(%Dsp.Config{} = cfg) do
     GenServer.start_link(__MODULE__, cfg, name: String.to_atom(cfg.name))
   end
@@ -32,15 +31,11 @@ defmodule Dsp.Connector do
   end
 
   defp call_dsp(request, cfg) do
-    body = build_body(request)
-
-    case HTTPoison.post(cfg.endpoint, Poison.encode!(body), [{"Content-Type", "application/json"}]) do
+    case HTTPoison.post(cfg.endpoint, Poison.encode!(%{body: request}), [
+           {"Content-Type", "application/json"}
+         ]) do
       {:ok, response} -> response.body
       _ -> :nothing
     end
-  end
-
-  defp build_body(request) do
-    %{body: request}
   end
 end
