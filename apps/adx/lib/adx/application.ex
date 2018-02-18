@@ -20,7 +20,7 @@ defmodule Adx.Application do
       end)
 
     children = [
-      {Dsp.Dispatch, lst_dsp}
+      {Dsp.Dispatch, [adx_currency: Application.get_env(:adx, :adx_currency), dsp_list: lst_dsp]}
       | children
     ]
 

@@ -1,9 +1,9 @@
-defmodule Adx.MixProject do
+defmodule Exchangerate.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :adx,
+      app: :exchangerate,
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
@@ -15,20 +15,15 @@ defmodule Adx.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Adx.Application, [:cowboy, :plug, :ex_rated, :httpoison]}
+      mod: {Exchangerate.Application, []}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.0"},
-      {:poison, "~> 3.1"},
-      {:ex_rated, "~> 1.2"},
       {:httpoison, "~> 1.0"},
-      {:exchangerate, in_umbrella: true},
-      {:dsp, in_umbrella: true}
+      {:poison, "~> 3.1"}
     ]
   end
 end

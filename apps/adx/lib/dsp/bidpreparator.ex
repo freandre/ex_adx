@@ -1,10 +1,10 @@
 defmodule Dsp.BidPreparator do
-  def filter_and_format(response_lst, request) when is_list(response_lst) do
+  def filter_and_format(response_lst, request, adx_currency) when is_list(response_lst) do
     response_lst
     |> Stream.filter(&(&1 != :nothing))
     |> Stream.map(&Poison.decode!/1)
     |> Stream.filter(&Dsp.Validator.validate(&1, request))
-    |> Stream.map(&Dsp.Normalizer.normalize_price(&1, "USD"))
+    |> Stream.map(&Dsp.Normalizer.normalize_price(&1, adx_currency))
   end
 
   def flatten_and_split(response_lst) do

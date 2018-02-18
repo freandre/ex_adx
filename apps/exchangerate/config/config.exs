@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :adx, key: :value
+#     config :exchangerate, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:adx, :key)
+#     Application.get_env(:exchangerate, :key)
 #
 # You can also configure a 3rd-party app:
 #
@@ -28,11 +28,3 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
-
-config :adx,
-  adx_port: 4242,
-  adx_currency: "EUR",
-  dsp_list: [
-    %{name: "fredsp", endpoint: "http://127.0.0.1:1515/dsp", qps: 20},
-    %{name: "fredsp2", endpoint: "http://127.0.0.1:1616/dsp", qps: 10}
-  ]

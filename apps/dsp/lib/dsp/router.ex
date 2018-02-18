@@ -42,7 +42,7 @@ defmodule Dsp.Router do
             "seat": "2"
         }
     ],
-    "cur": "USD"
+    "cur": "EUR"
 })
 
     encoded = Poison.decode!(data)
