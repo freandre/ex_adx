@@ -1,0 +1,3 @@
+[submodule "apps/ex_openrtb"]
+	path = apps/ex_openrtb
+	url = https://github.com/freandre/ex_openrtb.git

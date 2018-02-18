@@ -5,9 +5,8 @@ defmodule Adx.Router do
 
   plug(
     Plug.Parsers,
-    parsers: [:json],
-    pass: ["application/json"],
-    json_decoder: Poison
+    parsers: [Adx.RequestParser],
+    pass: ["application/json"]
   )
 
   plug(:dispatch)
@@ -16,7 +15,7 @@ defmodule Adx.Router do
     send_resp(conn, 200, "pong")
   end
 
-  post "/adx" do
+  post "/adx" do    
     ret = Dsp.Dispatch.request(conn.body_params)
     send_resp(conn, 200, Poison.encode!(ret))
   end

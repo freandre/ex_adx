@@ -28,7 +28,8 @@ defmodule Dsp.MixProject do
     [
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:ex_openrtb, in_umbrella: true}
     ]
   end
 end

@@ -45,7 +45,7 @@ defmodule Dsp.Router do
     "cur": "EUR"
 })
 
-    encoded = Poison.decode!(data)
+    encoded = Poison.decode!(data, as: %ExOpenRTB.BidResponse{})
     send_resp(conn, 200, Poison.encode!(encoded))
   end
 

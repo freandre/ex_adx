@@ -28,7 +28,8 @@ defmodule Adx.MixProject do
       {:ex_rated, "~> 1.2"},
       {:httpoison, "~> 1.0"},
       {:exchangerate, in_umbrella: true},
-      {:dsp, in_umbrella: true}
+      {:dsp, in_umbrella: true},
+      {:ex_openrtb, in_umbrella: true}
     ]
   end
 end
