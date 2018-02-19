@@ -18,19 +18,19 @@ defmodule Dsp.Election do
   defp select_individual_response(bid_map, _request) when is_map(bid_map) do
     bid_map
     |> Enum.reduce({0, []}, fn {_impid, bid_lst}, {sum, response_lst} ->
-      best = Enum.max_by(bid_lst, & &1["price"])
-      {sum + best["price"], [best | response_lst]}
+      best = Enum.max_by(bid_lst, &(&1.price))
+      {sum + best.price, [best | response_lst]}
     end)
   end
 
   defp select_group_response(seatbids, _request) when is_list(seatbids) do
     seatbids
     |> Enum.reduce({0, []}, fn seatbid, {max_price, _} = acc ->
-      bids = seatbid["bid"]
+      bids = seatbid.bid
 
       sum_price =
         bids
-        |> Enum.reduce(0, &(&2 + &1["price"]))
+        |> Enum.reduce(0, &(&2 + &1.price))
 
       if sum_price > max_price do
         {sum_price, bids}
