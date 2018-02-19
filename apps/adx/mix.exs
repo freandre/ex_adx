@@ -27,9 +27,9 @@ defmodule Adx.MixProject do
       {:poison, "~> 3.1"},
       {:ex_rated, "~> 1.2"},
       {:httpoison, "~> 1.0"},
+      {:ex_openrtb, git: "https://github.com/freandre/ex_openrtb.git"},
       {:exchangerate, in_umbrella: true},
-      {:dsp, in_umbrella: true},
-      {:ex_openrtb, in_umbrella: true}
+      {:dsp, in_umbrella: true}
     ]
   end
 end
